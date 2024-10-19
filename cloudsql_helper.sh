@@ -58,16 +58,16 @@ cloudsql_create_superuser() {
 cloudsql_delete_user() {
     local project="${1}"
     local instance="${2}"
-    local user="${3}"
+    local username="${3}"
 
-    if [[ -z "${project}" ]] || [[ -z "${instance}" ]] || [[ -z "${user}" ]]; then
+    if [[ -z "${project}" ]] || [[ -z "${instance}" ]] || [[ -z "${username}" ]]; then
         echo
         echo "Usage: cloudsql_delete_user <project> <instance> <user>"
         echo
         exit 1
     fi
 
-    gcloud sql users delete "${user}" --instance="${instance}" --project="${project}" --no-user-output-enabled &>/dev/null
+    gcloud sql users delete "${username}" --instance="${instance}" --project="${project}" --no-user-output-enabled &>/dev/null
 
     if [[ $? -eq 0 ]]; then
         echo "User deleted successfully."
