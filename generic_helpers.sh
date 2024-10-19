@@ -14,6 +14,6 @@ prompt_confirm() {
 
 generate_password() {
     local length="${1:-24}"
-    local password=$( LC_ALL=C tr -dc 'A-Za-z0-9' < /dev/urandom | head -c "${length}" )
+    local password="$( LC_ALL=C tr -dc 'A-Za-z0-9' < /dev/urandom | head -c "${length}" )"
     echo "${password}"
 }

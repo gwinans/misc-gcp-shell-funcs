@@ -15,7 +15,7 @@ cloudsql_proxy_start() {
 }
 
 cloudsql_proxy_running() {
-    local result=$( ps | grep cloud_sql_proxy | grep "${port}" | awk '{print $1}')
+    local result="$( ps | grep cloud_sql_proxy | grep "${port}" | awk '{print $1}')"
     if [[ -n "${result}" ]]; then
         cloudsql_proxy_stop "${result}"
     fi
