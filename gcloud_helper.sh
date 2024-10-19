@@ -40,7 +40,7 @@ get_secret() {
         exit 1
     fi
 
-    local password=$( gcloud secrets versions access latest --secret="${secret}" --project="${project}" )
+    local password="$( gcloud secrets versions access latest --secret="${secret}" --project="${project}" )"
 
     [[ $? -eq 0 ]] && echo "${password}" || { echo "Secret ( ${secret} ) not found."; exit 1; }
 }
