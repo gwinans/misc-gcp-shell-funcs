@@ -70,10 +70,15 @@ create_secret() {
 
         [[ $? -ne 0 ]] && { echo "  Failed to add secret value. Exiting."; exit 1; }
 
-        echo "  -> Verifying secret was created successfully:"
+        echo "  -> Verifying secret was updated successfully:"
         local secret_check="$( get_secret "${project}" "${secret_name}" )"
 
-        [[ -n "${secret_check}" ]] && echo "     -> Secret validated." || { echo "     -> Secret validation failed. Exiting."; exit 1; }
+        if [[ "${secret_check}" == "${secret_value}" ]]; then
+            echo "     -> Secret validated."
+        else
+            echo "     -> Secret validation failed. Exiting."
+            exit 1
+        fi
     fi
 }
 
