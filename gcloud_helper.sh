@@ -97,34 +97,3 @@ update_secret() {
     # For some reason, success here returns an exit(1). I hate the gcloud CLI.
     echo "${secret_value}" | gcloud secrets versions add "${secret_name}" --data-file=- --project="${project}" --no-user-output-enabled &>/dev/null || true
 }
-
-cloudsql_instance_exists() {
-    local project="${1}"
-    local instance="${2}"
-
-    if [[ -z "${project}" ]] || [[ -z "${instance}" ]]; then
-        echo
-        echo "Usage: cloudsql_instance_exists <project> <instance>"
-        echo
-        exit 1
-    fi
-
-    gcloud sql instances describe "${instance}" --project="${project}" --no-user-output-enabled &> /dev/null
-    echo $?
-}
-
-cloudsql_user_exists() {
-    local project="${1}"
-    local instance="${2}"
-    local user="${3}"
-
-    if [[ -z "${project}" ]] || [[ -z "${instance}" ]] || [[ -z "${user}" ]]; then
-        echo
-        echo "Usage: cloudsql_user_exists <project> <instance> <user>"
-        echo
-        exit 1
-    fi
-
-    gcloud sql users list --instance="${instance}" --project="${project}" --no-user-output-enabled | grep "${user}" &> /dev/null
-    echo $?
-}

@@ -11,7 +11,7 @@ cloudsql_instance_exists() {
         exit 1
     fi
 
-    gcloud sql instances describe "${instance}" --project="${project}" --no-user-output-enabled &> /dev/null
+    gcloud sql instances describe "${instance}" --project="${project}" --no-user-output-enabled &>/dev/null
     echo $?
 }
 
@@ -27,7 +27,7 @@ cloudsql_user_exists() {
         exit 1
     fi
 
-    gcloud sql users list --instance="${instance}" --project="${project}" --no-user-output-enabled | grep "${user}" &> /dev/null
+    gcloud sql users list --instance="${instance}" --project="${project}" --no-user-output-enabled | grep "${user}" &>/dev/null
     echo $?
 }
 
