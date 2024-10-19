@@ -24,15 +24,13 @@ All of these functions can be used directly if sourced.
 
 Install the following:
 
-* (gcloud CLI)[https://cloud.google.com/sdk/docs/install]
-* (cloud_sql_proxy v1.37.0+)[https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.0]
- * Installing with the gcloud cli will install 2.x. I'll add support for it later.
+* https://cloud.google.com/sdk/docs/install
+* https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.0
 
 ### If you are on a Mac
 
 Install the following:
-* (cloud_sql_proxy v1.37.0+)[https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.0]
-  * Installing with the gcloud cli will install 2.x. I'll add support for it later.
+* https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.0
 
 **Execute the following:**
 
