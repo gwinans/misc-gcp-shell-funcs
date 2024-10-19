@@ -39,8 +39,10 @@ cloudsql_create_superuser() {
 
     if [[ -z "${project}" ]] || [[ -z "${instance}" ]] || [[ -z "${username}" ]]; then
         echo
+        echo "WARNING: This will create a very privileged user."
+        echo
         echo "Usage: cloudsql_create_user <project> <instance> <username> [hostspec]"
-        echo "  Default hostspec = %"
+        echo "                                                            Default: %"
         echo
     fi
 
@@ -50,5 +52,26 @@ cloudsql_create_superuser() {
         echo "User created successfully."
     else
         echo "User creation failed."
+    fi
+}
+
+cloudsql_delete_user() {
+    local project="${1}"
+    local instance="${2}"
+    local username="${3}"
+
+    if [[ -z "${project}" ]] || [[ -z "${instance}" ]] || [[ -z "${username}" ]]; then
+        echo
+        echo "Usage: cloudsql_delete_user <project> <instance> <user>"
+        echo
+        exit 1
+    fi
+
+    gcloud sql users delete "${username}" --instance="${instance}" --project="${project}" --no-user-output-enabled &>/dev/null
+
+    if [[ $? -eq 0 ]]; then
+        echo "User deleted successfully."
+    else
+        echo "User deletion failed."
     fi
 }
