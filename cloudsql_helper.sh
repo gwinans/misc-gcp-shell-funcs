@@ -31,7 +31,7 @@ cloudsql_user_exists() {
     echo $?
 }
 
-cloudsql_create_super_user() {
+cloudsql_create_superuser() {
     local project="${1}"
     local instance="${2}"
     local username="${3}"
