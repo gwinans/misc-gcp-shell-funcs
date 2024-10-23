@@ -70,7 +70,7 @@ These can - hopefully obviously - be used in shell scripts as well.
 
 for f in /path/to/the/files/*.sh; do source "${f}"; done
 
-mypwd=$( get_secret my-project my-secret-name )
+mypwd="$( get_secret my-project my-secret-name )"
 
 echo "${mypwd}"
 ```
