@@ -57,7 +57,7 @@ source ~/.zshrc
 source *.sh
 ```
 
-You can then execute any of the functions like so:
+All of these functions can be executed as shell funcs except for cloudsql_create_superuser.. unless you've also sourced `generic_helpers.sh`
 
 ```
 get_secret my-project my-secret-name
