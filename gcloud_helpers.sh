@@ -10,7 +10,7 @@ project_exists() {
         exit 1
     fi
     
-    gcloud projects describe "${project}" --no-user-output-enabled 2> /dev/null
+    gcloud projects describe "${project}" --no-user-output-enabled &>/dev/null
     echo $?
 }
 
@@ -25,7 +25,7 @@ secret_exists() {
         exit 1
     fi
 
-    gcloud secrets describe "${secret}" --project="${project}" --no-user-output-enabled 2> /dev/null
+    gcloud secrets describe "${secret}" --project="${project}" --no-user-output-enabled &>/dev/null
     echo $?
 }
 
@@ -66,7 +66,7 @@ create_secret() {
 
         [[ $? -ne 0 ]] && { echo "  Failed to create secret. Exiting."; exit 1; }
 
-        echo "${secret_value}" | gcloud secrets versions add "${secret_name}" --data-file=- --project="${project}" --no-user-output-enabled 2> /dev/null
+        echo "${secret_value}" | gcloud secrets versions add "${secret_name}" --data-file=- --project="${project}" --no-user-output-enabled &>/dev/null
 
         [[ $? -ne 0 ]] && { echo "  Failed to add secret value. Exiting."; exit 1; }
 

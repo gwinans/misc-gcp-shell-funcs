@@ -39,12 +39,14 @@ cloudsql_create_superuser() {
 
     if [[ -z "${project}" ]] || [[ -z "${instance}" ]] || [[ -z "${username}" ]]; then
         echo
-        echo "WARNING: This will create a very privileged user."
-        echo
         echo "Usage: cloudsql_create_user <project> <instance> <username> [hostspec]"
         echo "                                                            Default: %"
         echo
     fi
+
+    echo "WARNING: This will create a very privileged user."
+    echo
+    prompt_confirm "Are you sure you want to create a superuser with username '${username}' on instance '${instance}'?"
 
     gcloud sql users create "${username}" --host="${hostspec}" --instance="${instance}" --project="${project}" --password="$( generate_password )"--no-user-output-enabled &>/dev/null
 
